@@ -24,7 +24,7 @@ public class painel_solar extends Equipamento {
 
     @Override
     public String toString(){
-        return "Painel Solar [Cód: ]" + codigo + "Nome: " + nome + "Quantidade? " + quantidade + "Preço: " + preco + "Tensão: " + tensao;
+        return "Painel Solar [Cód: " + codigo + " Nome:" + nome + " Quantidade:" + quantidade + " Preço:" + preco + " Tensão:" + tensao + " ]";
     }
 }
 

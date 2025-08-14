@@ -23,6 +23,6 @@ public class motor_eletrico extends Equipamento{
 
     @Override
     public String toString(){
-        return "Motor-Eletrico [Cód: ]" + codigo + "Nome: " + nome + "Quantidade: " + quantidade + "Preço: " + preco + "Potência: " + potencia + "]";
+        return "Motor-Eletrico [Cód:" + codigo + " Nome:" + nome + " Quantidade:" + quantidade + " Preço:" + preco + " Potência:" + potencia + "]";
     }
 }

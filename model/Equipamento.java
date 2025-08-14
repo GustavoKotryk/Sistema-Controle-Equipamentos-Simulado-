@@ -48,6 +48,6 @@ public class Equipamento {
 
     @Override
     public String toString(){
-        return "Equipamento [Cód: ]" + nome + "Nome: " + nome + "Quantidade: " + quantidade + "Preço: " + preco;
+        return "Equipamento [ Cód:" + nome + " Nome:" + nome + " Quantidade:" + quantidade + " Preço:" + preco + " ]";
     }
 }

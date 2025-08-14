@@ -145,7 +145,7 @@ public class InterfaceUsuario {
                 equipamento = new motor_eletrico(codigo, nome, quantidade, preco, potencia);
                 
             } else if (tipo == 2) {
-                System.out.print("🔌 Tensão: ");
+                System.out.print("Tensão: ");
                 String tensao = scanner.nextLine().trim();
                 
                 if (tensao.isEmpty()) {
@@ -251,8 +251,8 @@ public class InterfaceUsuario {
             estoqueService.pesquisarPorCodigo(codigo);
             
             System.out.println("\n Escolha a operação:");
-            System.out.println("1 - ➕ Adicionar unidades (Entrada)");
-            System.out.println("2 - ➖ Retirar unidades (Saída)");
+            System.out.println("1 - Adicionar unidades (Entrada)");
+            System.out.println("2 - Retirar unidades (Saída)");
             System.out.print("Sua escolha: ");
             
             int operacao = Integer.parseInt(scanner.nextLine());
