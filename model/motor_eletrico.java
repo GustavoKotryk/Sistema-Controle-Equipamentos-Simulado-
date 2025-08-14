@@ -1,6 +1,6 @@
 package model;
 
-public class motor_eletrico extends Equipamentos{
+public class motor_eletrico extends Equipamento{
     protected double potencia;
 
     public motor_eletrico(){
@@ -8,8 +8,8 @@ public class motor_eletrico extends Equipamentos{
         this.potencia = 0.0;
     }
 
-    public motor_eletrico(String cod, String nome, int quantidade , double preco , double potencia ){
-        super(cod, nome, quantidade, preco);
+    public motor_eletrico(String codigo, String nome, int quantidade , double preco , double potencia ){
+        super(codigo, nome, quantidade, preco);
         this.potencia = potencia;
     }
 

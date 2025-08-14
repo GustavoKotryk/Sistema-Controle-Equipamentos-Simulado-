@@ -1,12 +1,12 @@
 package model;
 
-public class Equipamentos {
+public class Equipamento {
     protected String codigo;
     protected String nome;
     protected int quantidade;
     protected double preco;
 
-    public Equipamentos(String codigo, String nome, int quantidade, double preco){
+    public Equipamento(String codigo, String nome, int quantidade, double preco){
         this.codigo = codigo;
         this.nome = nome;
         this.quantidade = quantidade;

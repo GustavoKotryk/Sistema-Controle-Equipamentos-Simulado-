@@ -1,29 +1,100 @@
 package service;
 import model.*;
-import view.InterfaceUsuario.*;
 
 import java.util.List;
 import java.util.ArrayList;
 
 public class Estoque {
-    private List<Equipamentos> estoque;
+    private List<Equipamento> equipamentos;
 
     public Estoque(){
-        estoque = new ArrayList<>();
+        this.equipamentos = new ArrayList<>();
     }
 
-   public void cadastrarEquipamento(Equipamentos equipamentos){
-    estoque.add(equipamentos);
-   }
-
-   public List<Equipamentos> listarEquipamentos(){
-    return estoque;
-   }
-
-   public void removerPorCod(String cod){
-    Equipamentos equipamento = pesquisarPorCod(cod);
-    if(equipamento != null){
-        estoque.remove(equipamento);
+    public void cadastrarEquipamento(Equipamento equipamento) throws Exception{
+        if (buscarPorCodigo(equipamento.getCodigo()) != null){
+            throw new Exception("Erro: Já existe um equipamento com esse código!");
+        }
+        equipamentos.add(equipamento);
+        System.out.print("Equipamento cadastrado com sucesso!");
     }
-   }
+
+     public void listarTodos() {
+        if (equipamentos.isEmpty()) {
+            System.out.println("Nenhum equipamento cadastrado.");
+            return;
+        }
+        
+        System.out.println("\n=== TODOS OS EQUIPAMENTOS ===");
+        for (Equipamento eq : equipamentos) {
+            System.out.println(eq.toString());
+        }
+    }
+
+     public void listarPorTipo(String tipo) {
+        System.out.println("\n=== EQUIPAMENTOS DO TIPO: " + tipo + " ===");
+        boolean encontrou = false;
+        
+        for (Equipamento eq : equipamentos) {
+            if ((tipo.equals("MotorEletrico") && eq instanceof motor_eletrico) ||
+                (tipo.equals("PainelControle") && eq instanceof painel_solar)) {
+                System.out.println(eq.toString());
+                encontrou = true;
+            }
+        }
+        
+        if (!encontrou) {
+            System.out.println("Nenhum equipamento encontrado do tipo " + tipo);
+        }
+    }
+
+    public Equipamento buscarPorCodigo(String codigo) {
+        for (Equipamento eq : equipamentos) {
+            if (eq.getCodigo().equals(codigo)) {
+                return eq;
+            }
+        }
+        return null;
+    }
+
+    public void pesquisarPorCodigo(String codigo) {
+        Equipamento eq = buscarPorCodigo(codigo);
+        if (eq != null) {
+            System.out.println("\n=== EQUIPAMENTO ENCONTRADO ===");
+            System.out.println(eq.toString());
+        } else {
+            System.out.println("Equipamento com código '" + codigo + "' não encontrado.");
+        }
+    }
+
+    public void removerPorCodigo(String codigo) throws Exception {
+        Equipamento eq = buscarPorCodigo(codigo);
+        if (eq != null) {
+            equipamentos.remove(eq);
+            System.out.println("Equipamento removido com sucesso!");
+        } else {
+            throw new Exception("Equipamento com código '" + codigo + "' não encontrado.");
+        }
+    }
+
+    public void movimentarEstoque(String codigo, int operacao, int quantidade) throws Exception {
+        Equipamento eq = buscarPorCodigo(codigo);
+        if (eq == null) {
+            throw new Exception("Equipamento não encontrado!");
+        }
+        
+        if (operacao == 1) { 
+            eq.setQuantidade(eq.getQuantidade() + quantidade);
+            System.out.println("Adicionadas " + quantidade + " unidades. Nova quantidade: " + eq.getQuantidade());
+        } 
+        else if (operacao == 2) { 
+            if (eq.getQuantidade() < quantidade) {
+                throw new Exception("Erro: Quantidade insuficiente em estoque! Disponível: " + eq.getQuantidade());
+            }
+            eq.setQuantidade(eq.getQuantidade() - quantidade);
+            System.out.println("Retiradas " + quantidade + " unidades. Nova quantidade: " + eq.getQuantidade());
+        }
+    }
+
+
 }

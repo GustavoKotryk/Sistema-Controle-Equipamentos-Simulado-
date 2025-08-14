@@ -1,6 +1,6 @@
 package model;
 
-public class painel_solar extends Equipamentos {
+public class painel_solar extends Equipamento {
     protected String tensao;
 
     public painel_solar(){
@@ -8,8 +8,8 @@ public class painel_solar extends Equipamentos {
     this.tensao = "";
     }
 
-    public painel_solar(String cod, String nome, int quantidade, double preco, String tensao){
-        super(cod, nome, quantidade, preco);
+    public painel_solar(String codigo, String nome, int quantidade, double preco, String tensao){
+        super(codigo, nome, quantidade, preco);
         this.tensao = tensao;
     }
 
