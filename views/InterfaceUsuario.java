@@ -161,11 +161,10 @@ public class InterfaceUsuario {
             }
             
             estoqueService.cadastrarEquipamento(equipamento);
-            System.out.println("Equipamento cadastrado com sucesso!");
             
         } catch (NumberFormatException e) {
             System.out.println(" ERRO: Digite apenas números nos campos numéricos!");
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             System.out.println(" " + e.getMessage());
         }
     }
@@ -226,8 +225,7 @@ public class InterfaceUsuario {
         if (confirmacao.equals("S") || confirmacao.equals("SIM")) {
             try {
                 estoqueService.removerPorCodigo(codigo);
-                System.out.println(" Equipamento removido com sucesso!");
-            } catch (Exception e) {
+            } catch (RuntimeException e) {
                 System.out.println(e.getMessage());
             }
         } else {
@@ -271,11 +269,10 @@ public class InterfaceUsuario {
             }
             
             estoqueService.movimentarEstoque(codigo, operacao, quantidade);
-            System.out.println(" Movimentação realizada com sucesso!");
             
         } catch (NumberFormatException e) {
             System.out.println(" ERRO: Digite apenas números nos campos numéricos!");
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             System.out.println( e.getMessage());
         }
     }

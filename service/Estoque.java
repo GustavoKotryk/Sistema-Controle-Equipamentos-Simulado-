@@ -11,15 +11,15 @@ public class Estoque {
         this.equipamentos = new ArrayList<>();
     }
 
-    public void cadastrarEquipamento(Equipamento equipamento) throws Exception{
+    public void cadastrarEquipamento(Equipamento equipamento) {
         if (buscarPorCodigo(equipamento.getCodigo()) != null){
-            throw new Exception("Erro: Já existe um equipamento com esse código!");
+            throw new RuntimeException("Erro: Já existe um equipamento com esse código!");
         }
         equipamentos.add(equipamento);
-        System.out.print("Equipamento cadastrado com sucesso!");
+        System.out.println("Equipamento cadastrado com sucesso!");
     }
 
-     public void listarTodos() {
+    public void listarTodos() {
         if (equipamentos.isEmpty()) {
             System.out.println("Nenhum equipamento cadastrado.");
             return;
@@ -31,7 +31,7 @@ public class Estoque {
         }
     }
 
-     public void listarPorTipo(String tipo) {
+    public void listarPorTipo(String tipo) {
         System.out.println("\n=== EQUIPAMENTOS DO TIPO: " + tipo + " ===");
         boolean encontrou = false;
         
@@ -67,20 +67,20 @@ public class Estoque {
         }
     }
 
-    public void removerPorCodigo(String codigo) throws Exception {
+    public void removerPorCodigo(String codigo) {
         Equipamento eq = buscarPorCodigo(codigo);
         if (eq != null) {
             equipamentos.remove(eq);
             System.out.println("Equipamento removido com sucesso!");
         } else {
-            throw new Exception("Equipamento com código '" + codigo + "' não encontrado.");
+            throw new RuntimeException("Equipamento com código '" + codigo + "' não encontrado.");
         }
     }
 
-    public void movimentarEstoque(String codigo, int operacao, int quantidade) throws Exception {
+    public void movimentarEstoque(String codigo, int operacao, int quantidade) {
         Equipamento eq = buscarPorCodigo(codigo);
         if (eq == null) {
-            throw new Exception("Equipamento não encontrado!");
+            throw new RuntimeException("Equipamento não encontrado!");
         }
         
         if (operacao == 1) { 
@@ -89,12 +89,12 @@ public class Estoque {
         } 
         else if (operacao == 2) { 
             if (eq.getQuantidade() < quantidade) {
-                throw new Exception("Erro: Quantidade insuficiente em estoque! Disponível: " + eq.getQuantidade());
+                throw new RuntimeException("Erro: Quantidade insuficiente em estoque! Disponível: " + eq.getQuantidade());
             }
             eq.setQuantidade(eq.getQuantidade() - quantidade);
             System.out.println("Retiradas " + quantidade + " unidades. Nova quantidade: " + eq.getQuantidade());
+        } else {
+            throw new RuntimeException("Operação inválida! Use 1 para adicionar ou 2 para retirar.");
         }
     }
-
-
 }
